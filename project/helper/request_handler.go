@@ -74,7 +74,7 @@ func (h Handle) checkCorrectRequestMethod() {
 	method := h.GetRequest().Method
 	defer func() {
 		if err := recover(); err != nil {
-			fmt.Printf("Error panic with read request body: %s", err)
+			fmt.Printf(enum.SystemMessageError, "002", err)
 			return
 		}
 	}()
@@ -92,7 +92,7 @@ func (h Handle) checkValidateRule(
 	val := h.getFormValue(field)
 
 	if rules.Required && (len(val) == 0 || !regexp.MustCompile(rules.Regex).MatchString(val)) {
-		return false, fmt.Errorf("%s", enum.ErrorValidateRequestData)
+		return false, fmt.Errorf(enum.ErrorValidateRequestData, "error")
 	}
 
 	(*requestData)[field] = val
