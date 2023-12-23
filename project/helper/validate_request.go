@@ -10,7 +10,6 @@ type ValidateStructureRequest struct {
 
 func (validator ValidateStructureRequest) Validate(data *dto.ApiRequestDto) {
 	path := &validate_request_chain.Path{}
-	method := &validate_request_chain.Method{}
-	method.SetNext(path)
+	path.SetNext(&validate_request_chain.Method{})
 	path.Execute(data)
 }

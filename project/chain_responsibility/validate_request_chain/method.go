@@ -14,8 +14,6 @@ func (m *Method) Execute(dto *dto.ApiRequestDto) {
 	if dto.Request().Method != dto.InnerMethod() {
 		panic(fmt.Sprintf("Invalid HTTP Method income:%s system:%s", dto.Request().Method, dto.InnerMethod()))
 	}
-
-	m.next.Execute(dto)
 }
 
 func (m *Method) SetNext(next validate_request_api.DepartmentRequestApi) {

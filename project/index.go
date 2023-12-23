@@ -1,12 +1,12 @@
 package main
 
 import (
-	"project/app"
 	"project/controller"
+	"project/initialize"
 )
 
 func main() {
-	api := app.NewApi()
+	api := initialize.NewApi()
 
 	api.GET("/", (controller.NewUserController()).GetPingInfo)
 	api.Init(":8081")
