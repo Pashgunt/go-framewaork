@@ -1,4 +1,4 @@
-package app
+package initialize
 
 import (
 	"log"
@@ -28,6 +28,7 @@ func NewApi() *API {
 
 func (api API) Init(port string) {
 	api.initErrorProcessing()
+	api.initFile()
 	log.Fatal(http.ListenAndServe(port, api.router))
 }
 
@@ -72,4 +73,9 @@ func (api API) initErrorProcessing() {
 			log.Fatalf(enum.SystemMessageError, "001", err)
 		}
 	}()
+}
+
+func (api API) initFile() {
+	file := file{}
+	file.Init()
 }
